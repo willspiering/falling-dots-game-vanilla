@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="controls">
+        <div id="scoreBoard">
+          <label>Score</label>
+          <p id="score">0</p>
+        </div>
+        <button id="start" class="btn">
+          Start
+        </button>
+        <button id="pause" class="btn">
+          Pause
+        </button>
+        <div class="slider">
+          <span class="icon-img slower"></span>
+          <input
+            type="range"
+            min="10"
+            max="100"
+            value="50"
+            step="10"
+            id="speedSlider"
+          />
+          <span class="icon-img faster"></span>
+        </div>
+      </div>
+
+      <div id="game">
+        <div id="overlay">Paused</div>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
