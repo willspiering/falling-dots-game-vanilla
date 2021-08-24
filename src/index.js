@@ -11,28 +11,13 @@ let score = 0;
 let gameState;
 let speed = slider.value;
 
-// define functions
+// define functions ---------------------------------------------------------
 function getRandomSize() {
   let randomNum = Math.floor(Math.random() * 10 + 1);
   return randomNum * 10;
 }
 
-// TODO handle removing items that are now offscreen
-function falling() {
-  const dots = document.querySelectorAll(".dot");
-  // TODO: calculate gameheight globally
-  const gameHeight = game.offsetHeight;
-  let duration = (gameHeight / speed) * 2;
-  dots.forEach((dot) => {
-    // add falling class for animation
-    dot.classList.add("falling");
-    // TODO: handle speed with duration
-    dot.style.animationDuration = duration + "s";
-  });
-}
-
 function createDot() {
-  // get random size and start position
   const size = getRandomSize();
   const start = Math.random() * (game.offsetWidth - size);
   const btn = document.createElement("button");
@@ -44,8 +29,21 @@ function createDot() {
   game.appendChild(btn);
 }
 
+function falling() {
+  const dots = document.querySelectorAll(".dot");
+  const gameHeight = game.offsetHeight;
+  let duration = (gameHeight / speed) * 2;
+  dots.forEach((dot) => {
+    dot.classList.add("falling");
+    dot.style.animationDuration = duration + "s";
+    // remove dot from dom after animation has completed
+    dot.onanimationend = () => {
+      dot.remove();
+    };
+  });
+}
+
 function startGame() {
-  // TODO: handle hiding startbtn
   overlay.classList.remove("visible");
   startBtn.style.display = "none";
   pauseBtn.style.display = "block";
@@ -56,7 +54,6 @@ function startGame() {
 }
 
 function pauseGame() {
-  // TODO: handle hiding pausebtn
   pauseBtn.style.display = "none";
   startBtn.style.display = "block";
   clearInterval(gameState);
@@ -92,11 +89,10 @@ function dotClicked(item) {
   let points = parseInt(item.getAttribute("data-score"));
   score = score + points;
   scoreDisplay.innerHTML = score;
-  // TODO: handle remove animation
   element.remove();
 }
 
-// add event listeners
+// add event listeners ----------------------------------------------------------------
 startBtn.addEventListener("click", startGame);
 pauseBtn.addEventListener("click", pauseGame);
 
