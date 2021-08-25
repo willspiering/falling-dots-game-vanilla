@@ -25,6 +25,7 @@ function createDot() {
   btn.style.height = size + "px";
   btn.style.width = size + "px";
   btn.style.left = start + "px";
+  btn.style.transform = `translatey(-${size}px)`;
   btn.setAttribute("data-score", calculatePoints(size));
   game.appendChild(btn);
 }
