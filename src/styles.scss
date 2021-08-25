@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
+// colors -----------------------------------------
+$app-color: #6b59a4;
+$text-color: white;
+$primary-action: green;
+$secondary-action: red;
+$game-bg: black;
+$dot-bg: #25c52570;
+$dot-border: #25c525;
+$dot-pop-bg: #ff000070;
+$dot-pop-border: red;
+// ----------------------------------------------------
+
 html * {
   box-sizing: border-box;
   font-family: "Press Start 2P", sans-serif;
@@ -36,7 +48,7 @@ body {
 
 #controls {
   padding: 20px;
-  color: white;
+  color: $text-color;
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -64,11 +76,11 @@ body {
 }
 
 #start {
-  background: green;
+  background: $primary-action;
 }
 
 #pause {
-  background: red;
+  background: $secondary-action;
   display: none;
 }
 
@@ -98,13 +110,13 @@ body {
   -webkit-appearance: none;
   height: 5px;
   border-radius: 5px;
-  background: black;
+  background: $game-bg;
   cursor: pointer;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 30px;
     height: 20px;
-    background: green;
+    background: $primary-action;
     border-radius: 5px;
   }
 }
@@ -125,7 +137,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
-  background: black;
+  background: $game-bg;
   
   @media only screen and (min-width: 600px) {
     height: 500px;
@@ -140,7 +152,7 @@ body {
   height: 100%;
   width: 100%;
   background: #00000090;
-  color: white;
+  color: $text-color;
   font-size: 32px;
   justify-content: center;
   align-items: center;
@@ -156,17 +168,25 @@ body {
 .dot {
   padding: 0;
   outline: none;
-  border: 2px solid #25c525;
+  border: 2px solid $dot-border;
   border-radius: 50%;
-  background: #25c52570;
+  background: $dot-bg;
   margin: 0;
   position: absolute;
   animation: fallingDots;
   animation-iteration-count: 1;
   animation-play-state: paused;
   animation-fill-mode: forwards;
+  transition: width .2s cubic-bezier(.7, -.6, .4, 1.5), height .2s cubic-bezier(.7, -.6, .4, 1.5), opacity .2s ease-out;
   &.falling {
     animation-play-state: running;
+  }
+  &.popped {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    background: $dot-pop-bg;
+    border-color: $dot-pop-border;
   }
 }
 

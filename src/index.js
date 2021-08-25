@@ -89,7 +89,10 @@ function dotClicked(item) {
   let points = parseInt(item.getAttribute("data-score"));
   score = score + points;
   scoreDisplay.innerHTML = score;
-  element.remove();
+  element.classList.add("popped");
+  setTimeout(() => {
+    element.remove();
+  }, 300);
 }
 
 // add event listeners ----------------------------------------------------------------
