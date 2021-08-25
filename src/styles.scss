@@ -3,7 +3,7 @@
 // colors -----------------------------------------
 $app-color: #6b59a4;
 $text-color: white;
-$primary-action: green;
+$primary-action: #25c525;
 $secondary-action: red;
 $game-bg: black;
 $dot-bg: #25c52570;
@@ -69,7 +69,7 @@ body {
     transition: all 300ms;
     animation: fadeIn linear 500ms;
     &:hover {
-      opacity: 60%;
+      opacity: 0.6;
       cursor: pointer;
     }
   }
@@ -97,11 +97,11 @@ body {
   }
   .slower {
     margin-right: 5px;
-    background-image: url(./src/assets/rabbit.png);
+    background-image: url(./assets/rabbit.png);
   }
   .faster {
     margin-left: 5px;
-    background-image: url(./src/assets/rabbit.png);
+    background-image: url(./assets/rabbit.png);
   }
 }
 
